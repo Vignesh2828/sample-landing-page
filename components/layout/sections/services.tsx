@@ -1,4 +1,4 @@
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
@@ -6,73 +6,69 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-enum ProService {
-  YES = 1,
-  NO = 0,
+interface SampleMaterial {
+  grade: number;
+  pdfUrl: string;
 }
-interface ServiceProps {
-  title: string;
-  pro: ProService;
-  description: string;
-}
-const serviceList: ServiceProps[] = [
+
+const sampleMaterials: SampleMaterial[] = [
   {
-    title: "Custom Domain Integration",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit adipisicing.",
-    pro: 0,
+    grade: 5,
+    pdfUrl: "https://dpstuition.com/Files/G5%20Worksheet%20-%20Chapter%201.pdf",
   },
   {
-    title: "Social Media Integrations",
-    description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, dicta.",
-    pro: 0,
+    grade: 6,
+    pdfUrl:
+      "https://dpstuition.com/Files/G6%20UNIT%20TEST%20-%20Chapter%201.pdf",
   },
   {
-    title: "Email Marketing Integrations",
-    description: "Lorem dolor sit amet adipisicing.",
-    pro: 0,
+    grade: 7,
+    pdfUrl:
+      "https://dpstuition.com/Files/G7%20Perimeter%20and%20Area%20Worksheet.pdf",
   },
+  { grade: 8, pdfUrl: "" },
+  { grade: 9, pdfUrl: "" },
   {
-    title: "SEO Optimization",
-    description: "Lorem ipsum dolor sit amet consectetur.",
-    pro: 1,
+    grade: 10,
+    pdfUrl: "https://dpstuition.com/Files/Class%20Notes_Algebra_class10.pdf",
   },
+  { grade: 11, pdfUrl: "" },
+  { grade: 12, pdfUrl: "" },
 ];
 
 export const ServicesSection = () => {
   return (
-    <section id="services" className="container py-24 sm:py-32">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Services
+    <section id="sample-materials" className="container py-24 sm:py-32">
+      <h2 className="text-xl text-primary text-center mb-2 tracking-wider">
+        Sample Materials
       </h2>
 
       <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        Grow Your Business
+        Preview Our Content
       </h2>
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        From marketing and sales to operations and strategy, we have the
-        expertise to help you achieve your goals.
+        Explore grade-specific sample materials to understand the quality and
+        structure of our content.
       </h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full lg:w-[60%] mx-auto">
-        {serviceList.map(({ title, description, pro }) => (
-          <Card
-            key={title}
-            className="bg-muted/60 dark:bg-card h-full relative"
-          >
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full mx-auto">
+        {sampleMaterials.map(({ grade, pdfUrl }) => (
+          <Card key={grade} className="bg-muted/60 dark:bg-card h-full">
             <CardHeader>
-              <CardTitle>{title}</CardTitle>
-              <CardDescription>{description}</CardDescription>
+              <CardTitle>Grade {grade}</CardTitle>
+              <CardDescription>
+                View a preview of the learning material for Grade {grade}.
+              </CardDescription>
+              <Button asChild className="mt-4 w-fit" variant="default">
+                {pdfUrl !== "" ? (
+                  <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+                    View Sample
+                  </a>
+                ) : (
+                  <a href="/">Coming Soon</a>
+                )}
+              </Button>
             </CardHeader>
-            <Badge
-              data-pro={ProService.YES === pro}
-              variant="secondary"
-              className="absolute -top-2 -right-3 data-[pro=false]:hidden"
-            >
-              PRO
-            </Badge>
           </Card>
         ))}
       </div>

@@ -1,74 +1,59 @@
 "use client";
 
-import { Icon } from "@/components/ui/icon";
-import { Marquee } from "@devnomic/marquee";
-import "@devnomic/marquee/dist/index.css";
-import { icons } from "lucide-react";
-interface sponsorsProps {
-  icon: string;
-  name: string;
-}
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+import { useTheme } from "next-themes"; // Assuming you're using next-themes or similar
 
-const sponsors: sponsorsProps[] = [
-  {
-    icon: "Crown",
-    name: "Acmebrand",
-  },
-  {
-    icon: "Vegan",
-    name: "Acmelogo",
-  },
-  {
-    icon: "Ghost",
-    name: "Acmesponsor",
-  },
-  {
-    icon: "Puzzle",
-    name: "Acmeipsum",
-  },
-  {
-    icon: "Squirrel",
-    name: "Acme",
-  },
-  {
-    icon: "Cookie",
-    name: "Accmee",
-  },
-  {
-    icon: "Drama",
-    name: "Acmetech",
-  },
-];
+export const StatsSection = () => {
+  const { theme } = useTheme(); 
+  const stats = [
+    {
+      count: 1000,
+      label: "Satisfied Parents",
+    },
+    {
+      count: 3000,
+      label: "Satisfied Students",
+    },
+    {
+      count: 100,
+      label: "Professional Teachers",
+    },
+  ];
 
-export const SponsorsSection = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.3,
+  });
+
   return (
-    <section id="sponsors" className="max-w-[75%] mx-auto pb-24 sm:pb-32">
-      <h2 className="text-lg md:text-xl text-center mb-6">
-        Our Platinum Sponsors
+    <section
+      id="stats"
+      ref={ref}
+      className="max-w-[75%] mx-auto pb-24 sm:pb-32 text-center"
+    >
+      <h2 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight mb-10">
+        Why Parents Trust Us
       </h2>
 
-      <div className="mx-auto">
-        <Marquee
-          className="gap-[3rem]"
-          fade
-          innerClassName="gap-[3rem]"
-          pauseOnHover
-        >
-          {sponsors.map(({ icon, name }) => (
-            <div
-              key={name}
-              className="flex items-center text-xl md:text-2xl font-medium"
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
+        {stats.map(({ count, label }) => (
+          <div
+            key={label}
+            className="flex flex-col items-center justify-center"
+          >
+            <span className="text-5xl font-bold text-primary">
+              {inView ? <CountUp end={count} duration={2} /> : 0}+
+            </span>
+            <span
+              className={`mt-3 text-lg md:text-xl ${
+                theme === "dark" ? "text-white" : "text-gray-800"
+              }`}
             >
-              <Icon
-                name={icon as keyof typeof icons}
-                size={32}
-                color="white"
-                className="mr-2"
-              />
-              {name}
-            </div>
-          ))}
-        </Marquee>
+              {label}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   );
