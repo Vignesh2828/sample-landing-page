@@ -59,7 +59,7 @@ export const FeaturesSection = () => {
       </h2>
 
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        At DPS Tuition, we prioritize the academic success and personal growth of every student. Here's what makes us different:
+        At DPS Tuition, we prioritize the academic success and personal growth of every student. Here&rsquo;s what makes us different:
       </h3>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

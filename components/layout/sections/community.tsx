@@ -30,9 +30,9 @@ const latestUpdates = [
       <hr className="border-secondary" />
       <div className="container py-20 sm:py-20">
         <div className="lg:w-[80%] mx-auto text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold">What's Latest?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold">What&rsquo;s Latest?</h2>
           <p className="text-lg text-muted-foreground mt-4">
-            Stay updated with our latest features, announcements, and more. Here’s what’s new!
+            Stay updated with our latest features, announcements, and more. Here&rsquo;s what&rsquo;s new!
           </p>
         </div>
 

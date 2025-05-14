@@ -122,7 +122,7 @@ export const ContactSection = () => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Student's Name</FormLabel>
+                      <FormLabel>Student&rsquo;s Name</FormLabel>
                       <FormControl>
                         <Input placeholder="John Doe" {...field} />
                       </FormControl>
