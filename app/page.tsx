@@ -5,11 +5,11 @@ import { FAQSection } from "@/components/layout/sections/faq";
 import { FeaturesSection } from "@/components/layout/sections/features";
 import { FooterSection } from "@/components/layout/sections/footer";
 import { HeroSection } from "@/components/layout/sections/hero";
-import { PricingSection } from "@/components/layout/sections/pricing";
 import { ServicesSection } from "@/components/layout/sections/services";
 import { StatsSection } from "@/components/layout/sections/sponsors";
-import { TeamSection } from "@/components/layout/sections/team";
 import { TestimonialSection } from "@/components/layout/sections/testimonial";
+import ScrollToTopButton from "@/components/layout/sections/ScrollToTopButton";
+import WhatsAppFloatingButton from "@/components/layout/sections/WhatsappFloatingButton";
 
 export const metadata = {
   title: "sample - Landing template",
@@ -49,11 +49,12 @@ export default function Home() {
       <ServicesSection />
       <WhatsLatestSection />
       <TestimonialSection />
-      {/* <TeamSection /> */}
-      {/* <PricingSection /> */}
       <ContactSection />
       <FAQSection />
       <FooterSection />
+
+        <WhatsAppFloatingButton />
+       <ScrollToTopButton />
     </>
   );
 }
