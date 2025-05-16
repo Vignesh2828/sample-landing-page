@@ -10,6 +10,7 @@ import { StatsSection } from "@/components/layout/sections/sponsors";
 import { TestimonialSection } from "@/components/layout/sections/testimonial";
 import ScrollToTopButton from "@/components/layout/sections/ScrollToTopButton";
 import WhatsAppFloatingButton from "@/components/layout/sections/WhatsappFloatingButton";
+import  { Toaster } from 'react-hot-toast';
 
 export const metadata = {
   title: "DPS Tuition Centre - Personalized One-to-One Tuition for Academic Excellence",
@@ -43,6 +44,7 @@ export default function Home() {
       <FAQSection />
       <FooterSection />
 
+      <Toaster position="top-right" />
       <WhatsAppFloatingButton />
       <ScrollToTopButton />
     </>
