@@ -11,6 +11,7 @@ import { TestimonialSection } from "@/components/layout/sections/testimonial";
 import ScrollToTopButton from "@/components/layout/sections/ScrollToTopButton";
 import WhatsAppFloatingButton from "@/components/layout/sections/WhatsappFloatingButton";
 import  { Toaster } from 'react-hot-toast';
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
   title: "DPS Tuition Centre - Personalized One-to-One Tuition for Academic Excellence",
@@ -44,6 +45,7 @@ export default function Home() {
       <FAQSection />
       <FooterSection />
 
+      <Analytics />
       <Toaster position="top-right" />
       <WhatsAppFloatingButton />
       <ScrollToTopButton />
