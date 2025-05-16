@@ -12,6 +12,7 @@ import ScrollToTopButton from "@/components/layout/sections/ScrollToTopButton";
 import WhatsAppFloatingButton from "@/components/layout/sections/WhatsappFloatingButton";
 import  { Toaster } from 'react-hot-toast';
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata = {
   title: "DPS Tuition Centre - Personalized One-to-One Tuition for Academic Excellence",
@@ -46,6 +47,7 @@ export default function Home() {
       <FooterSection />
 
       <Analytics />
+      <SpeedInsights />
       <Toaster position="top-right" />
       <WhatsAppFloatingButton />
       <ScrollToTopButton />
