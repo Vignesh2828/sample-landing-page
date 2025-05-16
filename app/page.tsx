@@ -12,32 +12,22 @@ import ScrollToTopButton from "@/components/layout/sections/ScrollToTopButton";
 import WhatsAppFloatingButton from "@/components/layout/sections/WhatsappFloatingButton";
 
 export const metadata = {
-  title: "sample - Landing template",
-  description: "Free Shadcn landing page for developers",
+  title: "DPS Tuition Centre - Personalized One-to-One Tuition for Academic Excellence",
+  description:
+    "Join DPS Tuition Centre for expert personalized tuition designed to help you excel academically. Book a free class today!",
   openGraph: {
     type: "website",
-    url: "https://github.com/",
-    title: "Shadcn - Landing template",
-    description: "Free Shadcn landing page for developers",
-    images: [
-      {
-        url: "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/shadcn-vue.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Shadcn - Landing template",
-      },
-    ],
+    url: "https://dpstuition.com",
+    title: "DPS Tuition Centre - Personalized One-to-One Tuition",
+    description:
+      "Experience customized tuition at DPS Tuition Centre focused on your individual learning needs and academic success.",
   },
-  twitter: {
-    card: "summary_large_image",
-    site: "https://github.com/",
-    title: "Shadcn - Landing template",
-    description: "Free Shadcn landing page for developers",
-    images: [
-      "https://res.cloudinary.com/dbzv9xfjp/image/upload/v1723499276/og-images/shadcn-vue.jpg",
-    ],
+  instagram: {
+    handle: "@dpstuition",
+    url: "https://instagram.com/dpstuition?igshid=YmMyMTA2M2Y",
   },
 };
+
 
 export default function Home() {
   return (
@@ -53,8 +43,8 @@ export default function Home() {
       <FAQSection />
       <FooterSection />
 
-        <WhatsAppFloatingButton />
-       <ScrollToTopButton />
+      <WhatsAppFloatingButton />
+      <ScrollToTopButton />
     </>
   );
 }

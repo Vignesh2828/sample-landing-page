@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { connectUs } from "@/components/data/siteData";
 
 // Updated Schema
 const formSchema = z.object({
@@ -57,6 +58,9 @@ export const ContactSection = () => {
     window.location.href = mailToLink;
   }
 
+  const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
+  const isSunday = today === "Sunday";
+
   return (
     <section id="contact" className="container py-24 sm:py-32">
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -78,7 +82,7 @@ export const ContactSection = () => {
                 <Building2 />
                 <div className="font-bold">Find us</div>
               </div>
-              <div>Guduvanchey 603202</div>
+              <div>{connectUs.findUs}</div>
             </div>
 
             <div>
@@ -86,7 +90,8 @@ export const ContactSection = () => {
                 <Phone />
                 <div className="font-bold">Call us</div>
               </div>
-              <div>+1 (619) 123-4567</div>
+              <div>{connectUs.callUs1}</div>
+              <div>{connectUs.callUs2}</div>
             </div>
 
             <div>
@@ -94,17 +99,17 @@ export const ContactSection = () => {
                 <Mail />
                 <div className="font-bold">Mail us</div>
               </div>
-              <div>vigneshwaranamani28@gmail.com</div>
+              <div>{connectUs.mailUs}</div>
             </div>
 
             <div>
               <div className="flex gap-2">
                 <Clock />
-                <div className="font-bold">Visit us</div>
+                <div className="font-bold">Opening Time Today</div>
               </div>
               <div>
-                <div>Monday - Friday</div>
-                <div>8AM - 4PM</div>
+                <div>{today}</div>
+                <div>{isSunday ? connectUs.sundayVisitTime : connectUs.visitUsTime}</div>
               </div>
             </div>
           </div>

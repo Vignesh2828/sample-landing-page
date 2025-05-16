@@ -37,16 +37,25 @@ export const FooterSection = () => {
                 <FiPhone className="text-primary" />
                 <Link
                   href="tel:+919344518635"
-                  className="text-primary underline"
+                  className="text-primary"
                 >
                   +91 93445 18635
+                </Link>
+              </p>
+              <p className="text-sm flex items-center space-x-1">
+                <FiPhone className="text-primary" />
+                <Link
+                  href="tel:+919344518635"
+                  className="text-primary"
+                >
+                  +91 95145 25103
                 </Link>
               </p>
                <p className="text-sm flex items-center space-x-1">
                 <FiMail className="text-primary" />
                 <Link
                   href="mailto:dpstuition@gmail.com"
-                  className="text-primary underline"
+                  className="text-primary"
                 >
                   dpstuition@gmail.com
                 </Link>

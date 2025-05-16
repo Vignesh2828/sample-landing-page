@@ -2,24 +2,11 @@
 
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-import { useTheme } from "next-themes"; // Assuming you're using next-themes or similar
+import { useTheme } from "next-themes";
+import { statsData } from "@/components/data/siteData";
 
 export const StatsSection = () => {
-  const { theme } = useTheme(); 
-  const stats = [
-    {
-      count: 1000,
-      label: "Satisfied Parents",
-    },
-    {
-      count: 3000,
-      label: "Satisfied Students",
-    },
-    {
-      count: 100,
-      label: "Professional Teachers",
-    },
-  ];
+  const { theme } = useTheme();
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -33,11 +20,11 @@ export const StatsSection = () => {
       className="max-w-[75%] mx-auto pb-24 sm:pb-32 text-center"
     >
       <h2 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight mb-10">
-        Why Parents Trust Us
+        {statsData.heading}
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-        {stats.map(({ count, label }) => (
+        {statsData.stats.map(({ count, label }) => (
           <div
             key={label}
             className="flex flex-col items-center justify-center"
