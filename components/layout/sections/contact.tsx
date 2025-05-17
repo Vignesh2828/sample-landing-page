@@ -28,6 +28,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { connectUs } from "@/components/data/siteData";
+import emailjs from "@emailjs/browser";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 // Updated Schema
 const formSchema = z.object({
@@ -40,6 +43,8 @@ const formSchema = z.object({
 });
 
 export const ContactSection = () => {
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,9 +58,33 @@ export const ContactSection = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
     const { name, email, subject, grade, referral, message } = values;
-    const mailToLink = `mailto:vigneshwaranm.me@gmail.com?subject=${subject} - ${grade}&body=Hello, I am ${name} (${email}). I heard about you via ${referral}. %0D%0A${message}`;
-    window.location.href = mailToLink;
+
+    const templateParams = {
+      name,
+      email,
+      subject,
+      grade,
+      referral,
+      message,
+    };
+
+    emailjs
+      .send(
+        "service_361d1ri",
+        "template_5qvo4iv",
+        templateParams,
+        "l7UNKCoBp7l3fxVJc"
+      )
+      .then((response) => {
+        toast.success("Enquiry sent successfully!");
+        setLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Failed to send message.");
+        setLoading(false);
+      });
   }
 
   const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
@@ -73,7 +102,8 @@ export const ContactSection = () => {
             <h2 className="text-3xl md:text-4xl font-bold">Connect With Us</h2>
           </div>
           <p className="mb-8 text-muted-foreground lg:w-5/6">
-            Reach out to us to enroll your child or learn more about our tuition programs.
+            Reach out to us to enroll your child or learn more about our tuition
+            programs.
           </p>
 
           <div className="flex flex-col gap-4">
@@ -109,7 +139,9 @@ export const ContactSection = () => {
               </div>
               <div>
                 <div>{today}</div>
-                <div>{isSunday ? connectUs.sundayVisitTime : connectUs.visitUsTime}</div>
+                <div>
+                  {isSunday ? connectUs.sundayVisitTime : connectUs.visitUsTime}
+                </div>
               </div>
             </div>
           </div>
@@ -120,7 +152,10 @@ export const ContactSection = () => {
           <CardHeader className="text-primary text-2xl"> </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="grid w-full gap-4">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="grid w-full gap-4"
+              >
                 {/* Name */}
                 <FormField
                   control={form.control}
@@ -143,7 +178,10 @@ export const ContactSection = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Grade</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select grade" />
@@ -169,18 +207,27 @@ export const ContactSection = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Subject</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select subject" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="Mathematics">Mathematics</SelectItem>
+                          <SelectItem value="Mathematics">
+                            Mathematics
+                          </SelectItem>
                           <SelectItem value="Science">Science</SelectItem>
                           <SelectItem value="English">English</SelectItem>
-                          <SelectItem value="Social Studies">Social Studies</SelectItem>
-                          <SelectItem value="Computer Science">Computer Science</SelectItem>
+                          <SelectItem value="Social Studies">
+                            Social Studies
+                          </SelectItem>
+                          <SelectItem value="Computer Science">
+                            Computer Science
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -196,7 +243,11 @@ export const ContactSection = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="your@email.com" {...field} />
+                        <Input
+                          type="email"
+                          placeholder="your@email.com"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -210,7 +261,10 @@ export const ContactSection = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>How did you hear about us?</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger>
                             <SelectValue placeholder="Select option" />
@@ -220,7 +274,9 @@ export const ContactSection = () => {
                           <SelectItem value="Friends">Friends</SelectItem>
                           <SelectItem value="Relatives">Relatives</SelectItem>
                           <SelectItem value="Teachers">Teachers</SelectItem>
-                          <SelectItem value="Social Media">Social Media</SelectItem>
+                          <SelectItem value="Social Media">
+                            Social Media
+                          </SelectItem>
                           <SelectItem value="Other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -237,14 +293,44 @@ export const ContactSection = () => {
                     <FormItem>
                       <FormLabel>Message</FormLabel>
                       <FormControl>
-                        <Textarea rows={5} placeholder="Your message..." className="resize-none" {...field} />
+                        <Textarea
+                          rows={5}
+                          placeholder="Your message..."
+                          className="resize-none"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
 
-                <Button className="mt-4">Send message</Button>
+                <Button className="mt-4" type="submit" disabled={loading}>
+                  {loading ? (
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 inline-block text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                      ></path>
+                    </svg>
+                  ) : (
+                    "Send message"
+                  )}
+                </Button>
               </form>
             </Form>
           </CardContent>
