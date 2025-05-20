@@ -47,7 +47,7 @@ export const connectUs = {
 
 export const heroData = {
   badge: {
-    text: "Enrollments Open for 2025!",
+    text: `Enrollments Open for ${new Date().getFullYear()}!`,
     isNew: true,
   },
   title: {

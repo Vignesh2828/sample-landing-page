@@ -35,23 +35,17 @@ export const FooterSection = () => {
             <div>
               <p className="text-sm flex items-center space-x-1">
                 <FiPhone className="text-primary" />
-                <Link
-                  href="tel:+919344518635"
-                  className="text-primary"
-                >
+                <Link href="tel:+919344518635" className="text-primary">
                   +91 93445 18635
                 </Link>
               </p>
               <p className="text-sm flex items-center space-x-1">
                 <FiPhone className="text-primary" />
-                <Link
-                  href="tel:+919344518635"
-                  className="text-primary"
-                >
+                <Link href="tel:+919344518635" className="text-primary">
                   +91 95145 25103
                 </Link>
               </p>
-               <p className="text-sm flex items-center space-x-1">
+              <p className="text-sm flex items-center space-x-1">
                 <FiMail className="text-primary" />
                 <Link
                   href="mailto:dpstuition@gmail.com"
@@ -130,9 +124,10 @@ export const FooterSection = () => {
             <Link
               target="_blank"
               href="https://vigneshdev.in"
-              className="text-primary transition-all border-primary hover:border-b-2 ml-1"
+              className="group relative ml-1 text-primary transition-all duration-300"
             >
               Vignesh
+              <span className="absolute left-0 -bottom-0.5 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </h3>
         </section>
